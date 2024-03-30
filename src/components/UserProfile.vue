@@ -18,17 +18,18 @@
       </div>
 
       <div class="user-tweets">
-        <div class="user-tweet" v-for="tweet in user.tweets" :key="tweet.id">
-          {{ tweet.content }}
-        </div>
+        <TweetItem v-for="tweet in user.tweets" :key="tweet.id" :username="user.username" :tweet="tweet"/>
       </div>
     </div>
-  </template>
+</template>
   
-  <script> 
+<script> 
+
+  import TweetItem from "./TweetItem";
   
   export default {
     name: 'App',
+    components: { TweetItem },
     data(){
       return{
         followers: 0,
@@ -67,15 +68,20 @@
       this.followUser();
     }
   }
-  </script>
+</script>
   
   <style>
+
     .user-profile{
-      margin-top: 40px;
+      display: grid;
+      grid-template-columns:  1fr 3fr;
+      max-width: 100%;
+      padding: 50px 5%;
     }
     .user-panel{
-      width: 200px;
-      background: #f2f2f2;
+      background-color: white;
+      margin-right: 50px;
+      border-radius: 10px;
       padding: 20px;
       display: flex;
       flex-direction: column;
